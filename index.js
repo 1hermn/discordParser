@@ -10,11 +10,13 @@ const folders = await fs.readdirSync("./servers")
 let servers = []
 
 for(let file of folders) {
-  const server = JSON.parse(String(await fs.readFileSync("./servers/" + file)))
-  servers.push({
-    name: file.split(".")[0],
-    channels: server
-  })
+  if(file.endsWith(".json")) {
+    const server = JSON.parse(String(await fs.readFileSync("./servers/" + file)))
+    servers.push({
+      name: file.split(".")[0],
+      channels: server
+    })
+  }
 }
 
 async function login() {
