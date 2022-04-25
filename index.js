@@ -40,15 +40,16 @@ async function login() {
 async function getMessages(channel, last, mainframe, name, server){
   const url = `v9/channels/${channel}/messages?limit=50`
   const { data } = await mainframe.get(url)
+  let tag = "#" + name
   let messages = []
   for(let message of data){
     if(Number(message.id) > Number(last)){
       if(message.content === ''){
         if(typeof message.embeds[0] !== "undefined") {
-          messages.push("`" + name + "`\n\n" + `${message.embeds[0].description}`)
+          messages.push("`" + tag + "`\n\n" + `${message.embeds[0].description}`)
         }else {
           if(typeof message.attachments[0] !== "undefined"){
-            let msg = "`" + name + "`\n\n"
+            let msg = "`" + tag + "`\n\n"
             for(let attach of message.attachments){
               msg += msg + `[Прикреплено](${attach.url})\n`
             }
@@ -64,7 +65,7 @@ async function getMessages(channel, last, mainframe, name, server){
           messages.push(msg)
         }
         const regex = new RegExp("<.*?>")
-        messages.push("`" + name + "`\n\n" + `${message.content.replace(regex, "t")}\n` + msg)
+        messages.push("`" + tag + "`\n\n" + `${message.content.replace(regex, "t")}\n` + msg)
       }
     }
   }
