@@ -63,8 +63,8 @@ async function getMessages(channel, last, mainframe, name, server){
           }
           messages.push(msg)
         }
-        const regex = new RegExp("<@.?[0-9]*?>")
-        messages.push("`" + name + "`\n\n" + `${message.content.replace(regex, "ТЭГ")}\n` + msg)
+        const regex = new RegExp("<.*?>")
+        messages.push("`" + name + "`\n\n" + `${message.content.replace(regex, "t")}\n` + msg)
       }
     }
   }
