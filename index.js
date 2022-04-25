@@ -93,7 +93,7 @@ async function parseAllMessages(){
         const data = await getMessages(server.channels[0][key], server.channels[1][key], mainframe, key,server)
         if (typeof data[0] !== "undefined") {
           for(let message of data){
-            await sleep((i++)*300)
+            await sleep((i++)*1000)
             await bot.telegram.sendMessage(process.env.tgChannelId, "`" + name +"`\n\n\n" +  message, {
               parse_mode: "Markdown"
             })
