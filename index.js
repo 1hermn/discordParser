@@ -77,7 +77,7 @@ const bot = new Telegraf(process.env.tgBotToken)
 
 bot.launch().then(async e => {
   await parseAllMessages()
-  setTimeout(async () => {
+  setInterval(async () => {
     await parseAllMessages()
   }, 1000 * 10 * 60)
 })
