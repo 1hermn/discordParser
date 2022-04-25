@@ -79,7 +79,7 @@ bot.launch().then(async e => {
   await parseAllMessages()
   setInterval(async () => {
     await parseAllMessages()
-  }, 1000 * 10 * 60)
+  }, 1000 * 60)
 })
 
 function sleep(ms) {
